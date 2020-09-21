@@ -1,3 +1,3 @@
 # entrada
 
-devops
+free open devops
