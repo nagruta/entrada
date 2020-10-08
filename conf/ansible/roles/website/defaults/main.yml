@@ -1,0 +1,7 @@
+---
+entrada_webs_git_domain: gitlab.com
+#entrada_webs_git_user: override-this-user!!!
+#entrada_webs_git_password: override-this-password!!!
+entrada_webs_git_repo: naluar/entrada.git
+entrada_webs_git_work_dir: naluar/repo/entrada
+
