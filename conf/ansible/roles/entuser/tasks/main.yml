@@ -1,0 +1,8 @@
+---
+- name: user "{{ entrada_user_name }}"
+  user:
+    name: "{{ entrada_user_name }}"
+    password: "{{ entrada_user_password | password_hash('sha512') }}"
+    uid: "{{ entrada_user_uid }}"
+    shell: /bin/bash
+  become: yes
