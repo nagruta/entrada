@@ -1,0 +1,10 @@
+---
+- name: Node.js
+  apt:
+    name: nodejs
+  become: yes
+
+- name: npm
+  apt:
+    name: npm
+  become: yes

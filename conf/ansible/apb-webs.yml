@@ -2,4 +2,5 @@
 - hosts: group_purpose_webs
   roles:
     - git
+    - nodejs
 ...
