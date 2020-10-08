@@ -1,0 +1,49 @@
+---
+all:
+  hosts:
+    host_example_01:
+      ansible_host: 192.168.9.1
+    host_example_02:
+      ansible_host: 192.168.9.2
+    host_example_03:
+      ansible_host: 192.168.9.3
+  children:
+    group_os_debian:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_os_debian_vars:
+          vars:
+            ansible_user: admin
+          hosts:
+            host_example_01:
+    group_os_ubuntu:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_os_ubuntu_vars:
+          vars:
+            ansible_user: ubuntu
+          hosts:
+            host_example_02:
+            host_example_03:
+    group_purpose_scps:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_scps_vars:
+          vars:
+          hosts:
+            host_example_02:
+    group_purpose_turn:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_turn_vars:
+          vars:
+          hosts:
+            host_example_01:
+    group_purpose_webs:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_os_ubuntu_user_vars:
+          vars:
+          hosts:
+            host_example_03:
+...
