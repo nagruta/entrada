@@ -23,4 +23,18 @@ then
   FILE_INVENTORY=$FILE_SUPER_INVENTORY
 fi
 cd $PATH_CONF_ANSIBLE
-ansible-playbook -i $FILE_INVENTORY -vv $1.yml $2 $3 $4 $5 $6 $7 $8 $9
+# copy super .ssh keys to /tmp so we can set chmod them (for Vagrant on windows)
+DIR_SSH=.ssh
+PATH_SUPER_CONF_ANSIBLE_SSH=$PATH_SUPER_CONF_ANSIBLE/$DIR_SSH
+if [ -d $PATH_SUPER_CONF_ANSIBLE_SSH ]
+then
+  export ENTRADA_PATH_TMP=/tmp/entrada
+  export ENTRADA_PATH_SSH=$ENTRADA_PATH_TMP/$DIR_SSH
+  cp -r $PATH_SUPER_CONF_ANSIBLE_SSH $ENTRADA_PATH_TMP
+  chmod 700 $ENTRADA_PATH_SSH
+  chmod 600 $ENTRADA_PATH_SSH/*.pem
+  chmod 600 $ENTRADA_PATH_SSH/id_*
+  chmod 644 $ENTRADA_PATH_SSH/id_*.pub
+  ARG_EXTRA_VARS="-e entrada_path_ssh=$ENTRADA_PATH_SSH"
+fi
+ansible-playbook -i $FILE_INVENTORY $ARG_EXTRA_VARS -vv $1.yml $2 $3 $4 $5 $6 $7 $8 $9
