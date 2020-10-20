@@ -1,4 +1,5 @@
 ---
+entrada_webs_git_branch: master
 entrada_webs_git_domain: gitlab.com
 #entrada_webs_git_user: override-this-user!!!
 #entrada_webs_git_password: override-this-password!!!
