@@ -1,10 +1,20 @@
 ---
 - name: Node.js
-  apt:
-    name: nodejs
+  apt: name=nodejs
   become: yes
 
 - name: npm
-  apt:
-    name: npm
+  apt: name=npm
+  become: yes
+
+- name: pm2
+  npm: name=pm2 global=yes
+  become: yes
+
+- name: libcap2-bin (for non-root permission for ports < 1024)
+  apt: name=libcap2-bin
+  become: yes
+
+- name: allow node to bind all ports
+  command: setcap cap_net_bind_service=+ep /usr/bin/node
   become: yes
