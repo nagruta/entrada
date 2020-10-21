@@ -1,0 +1,5 @@
+---
+- name: "kill all pm2 processes in {{ entrada_user_home_webs_run_dir }}"
+  command: pm2 kill chdir={{ entrada_user_home_webs_run_dir }}
+  become: yes
+  become_user: "{{ entrada_user_name }}"

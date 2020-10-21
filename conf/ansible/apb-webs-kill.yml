@@ -1,0 +1,7 @@
+---
+- hosts: group_purpose_webs
+  tasks:
+    - include_role:
+        name: website
+        tasks_from: atasks-website-kill.yml
+...

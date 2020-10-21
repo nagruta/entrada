@@ -1,0 +1,5 @@
+---
+- name: "start up web server {{ entrada_webs_run_app }}"
+  command: pm2 start {{ entrada_webs_run_app }} {{ (entrada_webs_run_args is defined) | ternary(' -- ' + entrada_webs_run_args,'') }} chdir={{ entrada_user_home_webs_run_dir }}
+  become: yes
+  become_user: "{{ entrada_user_name }}"
