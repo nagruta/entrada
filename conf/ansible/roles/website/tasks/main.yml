@@ -16,6 +16,22 @@
     force: yes
   become: yes
 
+- name: "copy letsencrypt certificates to {{ entrada_user_home_webs_run_dir }}"
+  block:
+    - copy:
+        src: "/etc/letsencrypt/live/{{ entrada_webs_cert_domain }}/fullchain.pem"
+        dest: "{{ entrada_user_home_webs_run_dir }}/cert/"
+        remote_src: yes
+    - copy:
+        src: "/etc/letsencrypt/live/{{ entrada_webs_cert_domain }}/privkey.pem"
+        dest: "{{ entrada_user_home_webs_run_dir }}/cert/"
+        remote_src: yes
+    - file:
+        dest: "{{ entrada_user_home_webs_run_dir }}/cert/privkey.pem"
+        mode: 0600
+  become: yes
+  when: entrada_webs_run_dir is defined
+
 - name: "reset top directory owner, recursively"
   file:
     dest: "{{ entrada_user_home_top_dir }}"
