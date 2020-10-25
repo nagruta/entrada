@@ -1,0 +1,18 @@
+---
+# !!! requires ansible-galaxy and community.general collection
+#- name: "install certbot (via snap)"
+#  community.general.snap:
+#    name: certbot
+#    classic: yes
+
+- name: "install certbot (via snap)"
+  command: snap install --classic certbot
+  become: yes
+
+- name: "shutdown web server (just in case)"
+  include_role: name=website tasks_from=atasks-website-down.yml
+  ignore_errors: yes
+
+- name: "acquire or renew certificate using certbot"
+  command: certbot certonly -n --standalone --keep --agree-tos -d {{ entrada_webs_cert_domain }} --email {{ entrada_webs_cert_email_name }}@{{ entrada_webs_cert_domain }}
+  become: yes

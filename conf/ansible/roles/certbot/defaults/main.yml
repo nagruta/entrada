@@ -1,0 +1,3 @@
+---
+entrada_webs_cert_domain: override-this-domain.website
+entrada_webs_cert_email_name: letsencrypt
