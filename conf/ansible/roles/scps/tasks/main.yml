@@ -1,0 +1,10 @@
+---
+#- name: 'copy ssh keys'
+#  copy: src="{{ entrada_path_ssh }}" dest="/home/{{ entrada_user_name }}"
+#  become: yes
+#  become_user: "{{ entrada_user_name }}"
+
+- name: 'eradicate ~/.ssh'
+  file: path="/home/{{ entrada_user_name }}/.ssh" state=absent
+  become: yes
+  become_user: "{{ entrada_user_name }}"

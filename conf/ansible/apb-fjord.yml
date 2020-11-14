@@ -1,0 +1,7 @@
+---
+- hosts: group_purpose_fjord
+  gather_facts: no
+  roles:
+    - entuser
+    - fjord
+...
