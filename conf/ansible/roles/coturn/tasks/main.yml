@@ -1,0 +1,54 @@
+---
+- name: establish coturn
+  apt: name=coturn update_cache=yes
+  become: yes
+
+#- name: enable coturn daemon
+#  command: turnserver --external-ip {{ ansible_host }} -o
+#  become: yes
+- name: configure coturn daemon
+  block:
+    - name: configure turnserver daemon at system startup
+      lineinfile:
+        path: /etc/default/coturn
+        regexp: '^TURNSERVER_ENABLED='
+        insertafter: '^#TURNSERVER_ENABLED='
+        line: 'TURNSERVER_ENABLED=1'
+    - name: configure CLI disabled
+      lineinfile:
+        path: /etc/turnserver.conf
+        regexp: '^no-cli'
+        insertafter: '^#no-cli'
+        line: "no-cli"
+    - name: configure external IP
+      lineinfile:
+        path: /etc/turnserver.conf
+        regexp: '^external-ip='
+        insertafter: '^#external-ip='
+        line: "external-ip={{ ansible_host }}"
+    - name: configure listener IP
+      lineinfile:
+        path: /etc/turnserver.conf
+        regexp: '^listening-ip='
+        insertafter: '^#listening-ip='
+        line: "listening-ip={{ entrada_coturn_listening_ip }}"
+      when: entrada_coturn_listening_ip is defined
+    - name: configure realm
+      lineinfile:
+        path: /etc/turnserver.conf
+        regexp: '^realm='
+        insertafter: '^#realm='
+        line: "realm={{ entrada_coturn_realm }}"
+      when: entrada_coturn_realm is defined
+    - name: configure long term user credentials
+      lineinfile:
+        path: /etc/turnserver.conf
+        regexp: '^user='
+        insertafter: '^#user='
+        line: "user={{ entrada_coturn_user_name }}:{{ entrada_coturn_user_password }}"
+      when: entrada_coturn_user_name is defined and entrada_coturn_user_password is defined
+  become: yes
+
+- name: establish coturn service running
+  systemd: name=coturn state=restarted
+  become: yes

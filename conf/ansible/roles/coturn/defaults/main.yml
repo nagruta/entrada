@@ -1,0 +1,6 @@
+---
+# !!! OPTIONAL VAR EXAMPLES
+#entrada_coturn_listening_ip: 127.0.0.1
+#entrada_coturn_realm: somewhere.org
+#entrada_coturn_user_name: override-this-user!!!
+#entrada_coturn_user_password: override-this-password!!!
