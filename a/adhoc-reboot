@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $# -lt 1 ]
+then
+    echo usage: "$0 <host pattern>"
+    exit 1
+fi
+`dirname $0`/adhoc $1 -m ansible.builtin.reboot --become
