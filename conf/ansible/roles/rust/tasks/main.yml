@@ -1,0 +1,6 @@
+---
+- name: "establish Rust"
+  block:
+    - shell: "curl https://sh.rustup.rs -sSf | sh -s -- -y"
+  become: yes
+  become_user: "{{ entrada_user_name }}"
