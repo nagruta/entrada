@@ -1,0 +1,17 @@
+---
+- set_fact:
+    entrada_webs_git_url_prefix: ""
+
+- name: "prefix git URL with user:password"
+  set_fact:
+    entrada_webs_git_url_prefix: "{{ entrada_webs_git_user }}:{{ entrada_webs_git_password|urlencode() }}@"
+  when: entrada_webs_git_user is defined and entrada_webs_git_password is defined
+
+- name: "clone/checkout repo"
+  git:
+    #key_file: "{{ entrada_webs_git_key_file }}"
+    repo: "https://{{ entrada_webs_git_url_prefix }}{{ entrada_webs_git_domain }}//{{ entrada_webs_git_repo }}"
+    dest: "{{ entrada_user_home_work_dir }}"
+    version: "{{ entrada_webs_git_branch }}"
+    force: yes
+  become: yes
