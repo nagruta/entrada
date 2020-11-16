@@ -10,3 +10,4 @@ entrada_webs_git_work_dir: naluar/repo/entrada
 entrada_user_home_top_dir: "/home/{{ entrada_user_name }}/{{ entrada_user_top_dir }}"
 entrada_user_home_work_dir: "{{ entrada_user_home_top_dir }}/{{ entrada_webs_git_work_dir }}"
 entrada_user_home_webs_run_dir: "{{ entrada_user_home_work_dir }}/{{ entrada_webs_run_dir }}"
+entrada_user_home_webs_run_type: nodejs
