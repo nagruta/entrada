@@ -30,3 +30,12 @@
   become: yes
   become_user: "{{ entrada_user_name }}"
   when: entrada_webs_run_type == "nodejs" and entrada_webs_run_dir is defined
+
+- name: "establish system service"
+  vars:
+    entrada_service_name: "{{ entrada_webs_service_name }}"
+    entrada_service_user: "{{ entrada_user_name }}"
+    entrada_service_path: "{{ entrada_user_home_webs_run_dir }}"
+    entrada_service_command: "{{ entrada_webs_service_command }}"
+  include_role: name=service
+  when: entrada_webs_service_name is defined and entrada_webs_service_command is defined

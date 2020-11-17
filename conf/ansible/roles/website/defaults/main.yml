@@ -7,7 +7,10 @@ entrada_webs_git_repo: naluar/entrada.git
 entrada_webs_git_work_dir: naluar/repo/entrada
 #entrada_webs_run_dir: default-is-undefined
 #entrada_webs_run_app: default-is-undefined
+#entrada_webs_run_args: default-is-undefined
+entrada_webs_run_type: nodejs
+#entrada_webs_service_name: default-is-undefined
+#entrada_webs_service_command: default-is-undefined
 entrada_user_home_top_dir: "/home/{{ entrada_user_name }}/{{ entrada_user_top_dir }}"
 entrada_user_home_work_dir: "{{ entrada_user_home_top_dir }}/{{ entrada_webs_git_work_dir }}"
 entrada_user_home_webs_run_dir: "{{ entrada_user_home_work_dir }}/{{ entrada_webs_run_dir }}"
-entrada_user_home_webs_run_type: nodejs
