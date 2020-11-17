@@ -1,0 +1,9 @@
+---
+- hosts: group_purpose_bayou
+  gather_facts: no
+  roles:
+    - entuser
+    - git
+    - rust
+    - website
+...
