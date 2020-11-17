@@ -1,0 +1,27 @@
+---
+- name: establish systemd definition of service {{ entrada_service_name }}
+  blockinfile:
+    path: /etc/systemd/system/luarbayou.service
+    create: yes
+    block: |
+      [Unit]
+      Description={{ entrada_service_name }}.service
+
+      [Service]
+      User={{ entrada_service_user }}
+      WorkingDirectory={{ entrada_service_path }}
+      StandardOutput=file:{{ entrada_service_path }}/{{ entrada_service_name }}.log
+      ExecStart={{ entrada_service_command }}
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+  become: yes
+
+- name: restart systemd service {{ entrada_service_name }}
+  systemd:
+    name: "{{ entrada_service_name }}"
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+  become: yes

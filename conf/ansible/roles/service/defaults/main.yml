@@ -1,0 +1,6 @@
+---
+# !!! REQUIRED VARS
+#entrada_service_name: !!! no default value
+#entrada_service_user: !!! no default value
+#entrada_service_path: !!! no default value
+#entrada_service_command: !!! no default value
