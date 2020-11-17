@@ -6,4 +6,7 @@ then
 fi
 PATH_THIS=`dirname $0`
 source $PATH_THIS/env-ansible
-ansible -i $FILE_INVENTORY $ARG_EXTRA_VARS -vv $*
+#echo "ARGS >"$@"<"
+#COMMAND="ansible -i "$FILE_INVENTORY" "$ARG_EXTRA_VARS" -vv "$@""
+#echo "COMMMAND >"$COMMAND"<"
+eval ansible -i $FILE_INVENTORY $ARG_EXTRA_VARS "$@"
