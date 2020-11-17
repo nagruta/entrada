@@ -7,6 +7,8 @@ all:
       ansible_host: 192.168.9.2
     host_example_03:
       ansible_host: 192.168.9.3
+    host_example_03:
+      ansible_host: 192.168.9.4
   children:
     group_os_debian:
       children:
@@ -16,6 +18,7 @@ all:
             ansible_user: admin
           hosts:
             host_example_01:
+            host_example_02:
     group_os_ubuntu:
       children:
         # !!! isolate group down one level down to prevent var overrides
@@ -23,27 +26,34 @@ all:
           vars:
             ansible_user: ubuntu
           hosts:
-            host_example_02:
             host_example_03:
-    group_purpose_scps:
+            host_example_04:
+    group_purpose_bayou:
       children:
         # !!! isolate group down one level down to prevent var overrides
-        group_purpose_scps_vars:
-          vars:
-          hosts:
-            host_example_02:
-    group_purpose_turn:
-      children:
-        # !!! isolate group down one level down to prevent var overrides
-        group_purpose_turn_vars:
+        group_purpose_bayou:
           vars:
           hosts:
             host_example_01:
-    group_purpose_webs:
+    group_purpose_brook:
       children:
         # !!! isolate group down one level down to prevent var overrides
-        group_os_ubuntu_user_vars:
+        group_purpose_brook:
+          vars:
+          hosts:
+            host_example_02:
+    group_purpose_ditch:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_ditch_vars:
           vars:
           hosts:
             host_example_03:
+    group_purpose_fjord:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_fjord_vars:
+          vars:
+          hosts:
+            host_example_04:
 ...
