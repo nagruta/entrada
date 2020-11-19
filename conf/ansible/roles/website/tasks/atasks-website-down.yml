@@ -1,5 +1,6 @@
 ---
 - name: "shut down web server {{ entrada_webs_run_app }}"
   command: pm2 stop {{ entrada_webs_run_app }} chdir={{ entrada_user_home_webs_run_dir }}
+  ignore_errors: yes
   become: yes
   become_user: "{{ entrada_user_name }}"
