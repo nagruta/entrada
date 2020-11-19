@@ -2,4 +2,5 @@
 - name: git-lfs
   apt:
     name: git-lfs
+    update-cache: yes
   become: yes
