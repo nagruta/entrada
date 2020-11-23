@@ -42,10 +42,10 @@ all:
           vars:
           hosts:
             host_example_02:
-    group_purpose_ditch:
+    group_purpose_stunturn:
       children:
         # !!! isolate group down one level down to prevent var overrides
-        group_purpose_ditch_vars:
+        group_purpose_stunturn_vars:
           vars:
           hosts:
             host_example_03:

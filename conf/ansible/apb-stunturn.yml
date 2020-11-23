@@ -1,5 +1,5 @@
 ---
-- hosts: group_purpose_ditch
+- hosts: group_purpose_stunturn
   gather_facts: no
   roles:
     - coturn
