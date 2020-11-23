@@ -1,5 +1,5 @@
 ---
-- hosts: group_purpose_webs
+- hosts: group_purpose_frontweb
   tasks:
     - include_role:
         name: website
