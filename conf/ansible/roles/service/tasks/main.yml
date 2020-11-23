@@ -1,7 +1,7 @@
 ---
 - name: establish systemd definition of service {{ entrada_service_name }}
   blockinfile:
-    path: /etc/systemd/system/luarbayou.service
+    path: /etc/systemd/system/{{ entrada_service_name }}.service
     create: yes
     block: |
       [Unit]
