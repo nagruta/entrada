@@ -42,17 +42,17 @@ all:
           vars:
           hosts:
             host_example_02:
+    group_purpose_scpfiles:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_scpfiles_vars:
+          vars:
+          hosts:
+            host_example_03:
     group_purpose_stunturn:
       children:
         # !!! isolate group down one level down to prevent var overrides
         group_purpose_stunturn_vars:
-          vars:
-          hosts:
-            host_example_03:
-    group_purpose_fjord:
-      children:
-        # !!! isolate group down one level down to prevent var overrides
-        group_purpose_fjord_vars:
           vars:
           hosts:
             host_example_04:
