@@ -28,10 +28,10 @@ all:
           hosts:
             host_example_03:
             host_example_04:
-    group_purpose_bayou:
+    group_purpose_backrest:
       children:
         # !!! isolate group down one level down to prevent var overrides
-        group_purpose_bayou:
+        group_purpose_backrest_vars:
           vars:
           hosts:
             host_example_01:
