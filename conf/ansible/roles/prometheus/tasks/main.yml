@@ -1,0 +1,20 @@
+---
+- name: download prometheus
+  get_url:
+    url: "{{ entrada_prometheus_download_url }}"
+    dest: "{{ entrada_prometheus_download_dir }}"
+
+- name: extract prometheus
+  unarchive:
+    src: "{{ entrada_prometheus_download_dir }}/{{ entrada_prometheus_download_file }}"
+    dest: "{{ entrada_prometheus_run_dir }}"
+    creates: yes
+
+- name: "establish system service"
+  vars:
+    entrada_service_name: "{{ entrada_prometheus_service_name }}"
+    entrada_service_user: "{{ entrada_promethues_user_name }}"
+    entrada_service_path: "{{ entrada_prometheus_run_dir }}"
+    entrada_service_command: "prometheus"
+  include_role: name=service
+  when: entrada_monitor_service_name is defined

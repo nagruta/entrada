@@ -1,0 +1,9 @@
+---
+entrada_prometheus_platform: linux-amd64
+entrada_prometheus_version: v2.24.1
+entrada_prometheus_download_dir: "{{ entrada_monitor_run_dir }}/_download"
+entrada_prometheus_download_file: "prometheus-{{ entrada_prometheus_version }}.{{ entrada_prometheus_platform }}.tar.gz"
+entrada_prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/{{ entrada_prometheus_version }}/{{ entrada_prometheus_download_file }}"
+entrada_prometheus_run_dir: "{{ entrada_monitor_run_dir }}/prometheus"
+entrada_prometheus_service_name: "{{ entrada_monitor_service_name_prefix }}prometheus"
+entrada_prometheus_user_name: "{{ entrada_user_name }}"
