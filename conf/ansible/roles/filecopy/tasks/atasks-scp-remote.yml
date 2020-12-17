@@ -1,0 +1,20 @@
+---
+- name: "establish remote {{ scpkeydir }}"
+  file: path={{ scpkeydir }} state=directory
+
+- name: "establish scps private key"
+  copy: src={{ entrada_path_ssh}}/{{ scpkeyfile }} dest={{ scpkeyspec }}
+
+- name: "establish scps private key mode"
+  file: path={{ scpkeyspec }} mode='0600'
+
+- name: "establish scps public key"
+  copy: src={{ entrada_path_ssh}}/{{ scpkeyfile }}.pub dest={{ scpkeyspec }}.pub
+
+- name: "establish scps public key mode"
+  file: path={{ scpkeyspec }}.pub mode='0644'
+
+- name: "scp remote {{ scpsrc }} to {{ scpdest }}"
+  shell: "scp -B -i {{ scpkeyspec }} -o StrictHostKeyChecking=no {{ scpsrc }} {{ scpdest }}"
+  become: yes
+...

@@ -1,0 +1,19 @@
+---
+- name: "establish parent directory {{ destparent }}"
+  file: path={{ destparent }} state=directory
+
+- name: "optional force replacement of {{ target }}"
+  file: path={{ target }} state=absent
+  when: replacetarget is defined and replacetarget == True
+
+- name: "check existence of {{ target }}"
+  stat: path={{ target }} get_checksum=False get_md5=False
+  register: stat_target
+
+- name: "SCP from {{ srcfile }} to {{ destparent }}"
+  vars:
+    scpsrc: "{{ srcfile }}"
+    scpdest: "{{ destparent }}"
+  include_tasks: atasks-scp-remote.yml
+  when: stat_target.stat.exists == False
+...
