@@ -1,5 +1,6 @@
 ---
 - include_tasks: atasks-webgit.yml
+- include_tasks: atasks-extrafile.yml
 
 - name: "copy letsencrypt certificates to {{ entrada_user_home_webs_run_dir }}"
   block:
