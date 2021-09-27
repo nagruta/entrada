@@ -1,0 +1,9 @@
+---
+- hosts: group_purpose_cicd
+  gather_facts: no
+  roles:
+    - entuser
+    - git
+    - java
+    - jenkins
+...
