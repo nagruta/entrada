@@ -1,0 +1,12 @@
+---
+- name: OpenJDK 11
+  apt: name=openjdk-11-jdk update_cache=yes
+  become: yes
+
+- name: OpenJDK 11 debug symbols
+  apt: name=openjdk-11-dbg update_cache=yes
+  become: yes
+
+- name: OpenJDK 11 source
+  apt: name=openjdk-11-source update_cache=yes
+  become: yes
