@@ -1,0 +1,49 @@
+---
+# from https://docs.ansible.com/ansible/latest/collections/community/general/jenkins_plugin_module.html
+- name: install plugins without a version
+  jenkins_plugin:
+    name: "{{ item.key }}"
+  register: entrada_jenkins_plugin_unversioned
+  when: >
+    'version' not in item.value
+  with_dict: "{{ entrada_jenkins_plugins }}"
+
+- name: install plugins with a version
+  jenkins_plugin:
+    name: "{{ item.key }}"
+    version: "{{ item.value['version'] }}"
+  register: entrada_jenkins_plugin_versioned
+  when: >
+    'version' in item.value
+  with_dict: "{{ entrada_jenkins_plugins }}"
+
+- set_fact: jenkins_restart_required=no
+
+- set_fact: jenkins_restart_required=yes
+  when: item.changed
+  with_items: "{{ entrada_jenkins_plugin_versioned.results }}"
+
+- set_fact: jenkins_restart_required=yes
+  when: item.changed
+  with_items: "{{ entrada_jenkins_plugin_unversioned.results }}"
+
+- include_tasks: atasks-jenkins-service-restart.yml
+  when: jenkins_restart_required
+
+- set_fact: jenkins_restart_required=no
+
+- name: pin plugins
+  jenkins_plugin:
+    name: "{{ item.key }}"
+    state: "{{ 'pinned' if item.value['pinned'] else 'unpinned'}}"
+  when: >
+    'pinned' in item.value
+  with_dict: "{{ entrada_jenkins_plugins }}"
+
+- name: enable plugins
+  jenkins_plugin:
+    name: "{{ item.key }}"
+    state: "{{ 'enabled' if item.value['enabled'] else 'disabled'}}"
+  when: >
+    'enabled' in item.value
+  with_dict: "{{ entrada_jenkins_plugins }}"

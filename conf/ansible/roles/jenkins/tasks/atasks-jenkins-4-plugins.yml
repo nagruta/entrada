@@ -1,0 +1,18 @@
+---
+- set_fact: jenkins_restart_after_plugins=no
+
+- name: install plugins
+  jenkins_plugin:
+    name: "{{ item }}"
+    state: latest
+    url_username: "{{ entrada_user_name }}"
+    url_password: "{{ entrada_user_password }}"
+  register: entrada_jenkins_plugin_installed
+  loop: "{{ entrada_jenkins_plugins }}"
+
+- set_fact: jenkins_restart_after_plugins=yes
+  when: item.changed
+  loop: "{{ entrada_jenkins_plugin_installed.results }}"
+
+- include_tasks: atasks-jenkins-service-restart.yml
+  when: jenkins_restart_after_plugins

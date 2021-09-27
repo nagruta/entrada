@@ -1,0 +1,20 @@
+---
+- name: apt key
+  apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
+  become: yes
+  register: result_key
+
+- name: apt repo
+  apt_repository: repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present
+  become: yes
+  register: result_repo
+
+- name: apt install
+  apt: name=jenkins update_cache=yes
+  become: yes
+  register: result_install
+
+- include_tasks: atasks-jenkins-service-restart.yml
+  when: result_key.changed == True or
+        result_repo.changed == True or
+        result_install.changed == True

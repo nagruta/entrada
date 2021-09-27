@@ -1,0 +1,100 @@
+---
+entrada_jenkins_plugins_all: # 57 in order presented in web UI
+  dashboard_view
+  folders
+  configuration_as_code
+  owasp_markup_formatter
+  build_name_and_description_setter
+  build_timeout
+  config_file_provider
+  credentials_binding
+  embeddable_build_status
+  rebuilder
+  ssh_agent
+  throttle_concurrent_builds
+  timestamper
+  workspace_cleanup
+  ant
+  gradle
+  msbuild
+  nodejs
+  cobertura
+  html_publisher
+  junit
+  warnings_next_generation
+  xunit
+  pipeline
+  github_branch_source
+  pipeline_github_groovy_libraries
+  pipeline_stage_view
+  conditional_buildstep
+  multijob
+  parameterize_trigger
+  copy_artifact
+  bitbucket
+  clearcase
+  cvs
+  git
+  git_parameter
+  github
+  gitlab
+  p4
+  repo
+  subversion
+  matrix_project
+  ssh_build_agents
+  wmi_windows_agents
+  matrix_authorization_strategy
+  pam_authentication
+  ldap
+  role_based_authorization_strategy
+  active_directory
+  authorize_project
+  email_extension
+  email_extension_template
+  mailer
+  publish_over_ssh
+  ssh
+  locale
+  localization_chinese_simplified
+entrada_jenkins_plugins_suggested: # 19 in order presented in web UI
+  folders
+  owasp_markup_formatter
+  build_timeout
+  credentials_binding
+  timestamper
+  workspace_cleanup
+  ant
+  gradle
+  pipeline
+  github_branch_source
+  pipeline_github_groovy_libraries
+  pipeline_stage_view
+  git
+  ssh_build_agents
+  matrix_authorization_strategy
+  pam_authentication
+  ldap
+  email_extension
+  mailer
+entrada_jenkins_plugins: # 19 alphabetical, plus extras not in lists above
+  - antisamy-markup-formatter
+  - build-timeout
+  - cloudbees-folder
+  - credentials-binding
+  - dashboard-view
+  - email-ext
+  - git
+  - github-branch-source
+  - gradle
+  - mailer
+  - matrix-auth
+  - monitoring
+  - pam-auth
+  - pipeline-github-libraries
+  - pipeline-stage-view
+  - ssh-slaves
+  - test-results-analyzer
+  - timestamper
+  - workflow-aggregator
+  - ws-cleanup

@@ -1,0 +1,5 @@
+---
+- include_tasks: atasks-jenkins-1-apt.yml
+- include_tasks: atasks-jenkins-2-unlock-create-admin.yml
+- include_tasks: atasks-jenkins-3-disable-wizard.yml
+- include_tasks: atasks-jenkins-4-plugins.yml
