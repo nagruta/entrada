@@ -1,0 +1,53 @@
+---
+- name: iptables accept 80 (HTTP)
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: '80'
+    jump: ACCEPT
+  become: yes
+  register: result_http_accept
+
+- name: iptables accept 443 (HTTP)
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: '443'
+    jump: ACCEPT
+  become: yes
+  register: result_https_accept
+
+# !!! redirect jenkins because non-root cannot bind ports < 1024
+- name: redirect port 8080 to 80 (HTTP)
+  iptables:
+    table: nat
+    chain: PREROUTING
+    in_interface: eth0
+    protocol: tcp
+    match: tcp
+    destination_port: '8080'
+    jump: REDIRECT
+    to_ports: '80'
+  become: yes
+  register: result_http_redirect
+
+- name: redirect port 8443 to 443 (HTTPS)
+  iptables:
+    table: nat
+    chain: PREROUTING
+    in_interface: eth0
+    protocol: tcp
+    match: tcp
+    destination_port: '8443'
+    jump: REDIRECT
+    to_ports: '443'
+  become: yes
+  register: result_https_redirect
+
+- name: iptables save (Ubuntu)
+  shell: "iptables-save > /etc/iptables.rules"
+  become: yes
+  when: result_http_accept.changed or
+        result_https_accept.changed or
+        result_http_redirect.changed or
+        result_https_redirect.changed
