@@ -15,6 +15,6 @@
   register: result_install
 
 - include_tasks: atasks-jenkins-service-restart.yml
-  when: result_key.changed == True or
-        result_repo.changed == True or
-        result_install.changed == True
+  when: result_key.changed or
+        result_repo.changed or
+        result_install.changed
