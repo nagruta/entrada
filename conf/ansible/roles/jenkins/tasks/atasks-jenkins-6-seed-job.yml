@@ -1,0 +1,27 @@
+---
+- name: template seed config
+  template:
+    #src: "{{ lookup('template', entrada_jenkins_template_seed_config) }}"
+    src: "{{ entrada_jenkins_template_seed_config }}"
+    dest: /tmp/jenkins-seed-config.xml
+    mode: '0644'
+
+- name: configure and build seed job
+  jenkins_script:
+    script: |
+      import javax.xml.transform.stream.StreamSource
+      import hudson.model.*
+      import jenkins.model.*
+      def configXml = new FileInputStream("/tmp/jenkins-seed-config.xml")
+      def instance = Jenkins.instance
+      def job = instance.getItemByFullName('${job_name}')
+      if (job != null) {
+        job.updateByXml(new StreamSource(configXml))
+      } else {
+        instance.createProjectFromXML('${job_name}', configXml)
+      }
+      job.scheduleBuild(new Cause.RemoteCause("ansible", "entrada seed configured"))
+    args:
+      job_name: "{{ entrada_jenkins_job_name_seed }}"
+    user: "{{ entrada_user_name }}"
+    password: "{{ entrada_user_password }}"
