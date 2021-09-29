@@ -1,0 +1,18 @@
+{% for repo in entrada_cicd_git_repos %}
+pipelineJob('{{ repo.name }}') {
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote {
+            credentials('{{ repo.credentials }}')
+            url('{{ repo.url }}')
+          }
+          branch('master')
+        }
+      }
+      scriptPath('Jenkinsfile')
+    }
+  }
+}
+{% endfor %}
