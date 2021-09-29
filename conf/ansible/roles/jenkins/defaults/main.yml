@@ -1,4 +1,34 @@
 ---
+entrada_jenkins_job_name_seed: entrada-seed
+entrada_jenkins_template_job: entrada-jenkins-pipeline-job.groovy.j2
+entrada_jenkins_template_seed_config: entrada-jenkins-seed-config.xml.j2
+
+entrada_jenkins_plugins: # 21 alphabetical, plus extras not in lists above
+  - antisamy-markup-formatter
+  - build-timeout
+  - cloudbees-folder
+  - credentials-binding
+  - dashboard-view
+  - email-ext
+  - git
+  - github-branch-source
+  - gradle
+  - job-dsl
+  - mailer
+  - matrix-auth
+  - monitoring
+  - pam-auth
+  - pipeline-github-libraries
+  - pipeline-stage-view
+  - ssh-slaves
+  - test-results-analyzer
+  - timestamper
+  - workflow-aggregator
+  - workflow-cps
+  - ws-cleanup
+
+# ONLY for documentation purposes:
+
 entrada_jenkins_plugins_all: # 57 in order presented in web UI
   dashboard_view
   folders
@@ -57,6 +87,7 @@ entrada_jenkins_plugins_all: # 57 in order presented in web UI
   ssh
   locale
   localization_chinese_simplified
+
 entrada_jenkins_plugins_suggested: # 19 in order presented in web UI
   folders
   owasp_markup_formatter
@@ -77,24 +108,3 @@ entrada_jenkins_plugins_suggested: # 19 in order presented in web UI
   ldap
   email_extension
   mailer
-entrada_jenkins_plugins: # 19 alphabetical, plus extras not in lists above
-  - antisamy-markup-formatter
-  - build-timeout
-  - cloudbees-folder
-  - credentials-binding
-  - dashboard-view
-  - email-ext
-  - git
-  - github-branch-source
-  - gradle
-  - mailer
-  - matrix-auth
-  - monitoring
-  - pam-auth
-  - pipeline-github-libraries
-  - pipeline-stage-view
-  - ssh-slaves
-  - test-results-analyzer
-  - timestamper
-  - workflow-aggregator
-  - ws-cleanup
