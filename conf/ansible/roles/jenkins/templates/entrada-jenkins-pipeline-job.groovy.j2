@@ -8,10 +8,19 @@ pipelineJob('{{ repo.name }}') {
             credentials('{{ repo.credentials }}')
             url('{{ repo.url }}')
           }
-          branch('master')
+          branches('{{ repo.branches | default(entrada_cicd_branches) }}')
         }
       }
-      scriptPath('Jenkinsfile')
+      scriptPath('{{ repo.scriptpath | default(entrada_cicd_scriptpath) }}')
+    }
+  }
+  properties {
+    pipelineTriggers {
+      triggers {
+        pollSCM {
+          scmpoll_spec('{{ repo.pollscm | default(entrada_cicd_pollscm) }}')
+        }
+      }
     }
   }
 }
