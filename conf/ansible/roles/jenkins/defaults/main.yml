@@ -1,6 +1,10 @@
 ---
 entrada_cicd_credentials: []
 entrada_cicd_git_repos: []
+entrada_cicd_branches: '*'
+entrada_cicd_scriptpath: 'Jenkinsfile'
+entrada_cicd_pollscm: 'H/15 * * * *'
+ # ^ 15 minute intervals, all hours, all days, all months, all days of the week
 entrada_jenkins_job_name_seed: entrada-seed
 entrada_jenkins_template_job: entrada-jenkins-pipeline-job.groovy.j2
 entrada_jenkins_template_seed_config: entrada-jenkins-seed-config.xml.j2
