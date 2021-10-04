@@ -1,0 +1,17 @@
+---
+- name: establish Android SDK parent directory
+  file:
+    path: '{{ entrada_android_sdk_parent_dir }}'
+    state: directory
+
+- name: download Android SDK
+  get_url:
+    url: '{{ entrada_android_sdk_download_url }}/{{ entrada_android_sdk_download_file }}'
+    dest: '{{ entrada_android_sdk_parent_dir }}/{{ entrada_android_sdk_download_file }}'
+
+- name: extract Android SDK
+  unarchive:
+    src: '{{ entrada_android_sdk_parent_dir }}/{{ entrada_android_sdk_download_file }}'
+    dest: '{{ entrada_android_sdk_parent_dir }}'
+    mode: go+X # original files have x permission only for user
+    remote_src: yes

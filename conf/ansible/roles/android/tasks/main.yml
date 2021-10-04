@@ -1,0 +1,4 @@
+---
+- include_tasks: atasks-android-1-files.yml
+- include_tasks: atasks-android-2-env.yml
+- include_tasks: atasks-android-3-update.yml

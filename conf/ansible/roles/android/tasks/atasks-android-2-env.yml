@@ -1,0 +1,15 @@
+---
+- name: system environment var ANDROID_SDK_ROOT
+  lineinfile:
+    path: /etc/environment
+    insertbefore: ^PATH
+    regexp: ^ANDROID_SDK_ROOT
+    line: 'ANDROID_SDK_ROOT="{{ entrada_android_sdk_path }}"'
+
+- name: system PATH includes ANDROID_SDK_ROOT/...
+  include_tasks: atasks-system-path-includes-item.yml
+  loop:
+    #- ':{{ entrada_android_sdk_path }}/build-tools/{{ android_sdk_build_tools_version }}'
+    #- ':{{ entrada_android_sdk_path }}/build-tools'
+    #- ':{{ entrada_android_sdk_path }}/platform-tools'
+    - '{{ entrada_android_sdk_path }}/tools'

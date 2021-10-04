@@ -1,0 +1,9 @@
+---
+- name: update Android SDK tools and platforms and accept licenses
+  shell:
+    chdir: '{{ entrada_android_sdk_path }}/tools'
+    cmd: '(while sleep 3; do echo "y"; done) |
+      ./android update sdk --all -u -t
+      {{ (entrada_android_sdk_parts
+        + entrada_android_sdk_platforms) | join(",") }}'
+

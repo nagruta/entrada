@@ -1,0 +1,16 @@
+---
+- name: system PATH find {{ item }}
+  lineinfile:
+    path: /etc/environment
+    regexp: '(^PATH="(.+?:)*{{ item }}(:|"))'
+    state: absent
+  check_mode: yes
+  register: entrada_path_item_presence
+
+- name: system PATH append {{ item }}
+  lineinfile:
+    path: /etc/environment
+    regexp: '^PATH="(.+)"'
+    line: 'PATH="\1:{{ item }}"'
+    backrefs: yes
+  when: entrada_path_item_presence is not changed
