@@ -1,7 +1,7 @@
 ---
 entrada_cicd_credentials: []
 entrada_cicd_git_repos: []
-entrada_cicd_branches: '*'
+entrada_cicd_branches: '**'
 entrada_cicd_scriptpath: 'Jenkinsfile'
 entrada_cicd_pollscm: 'H/15 * * * *'
  # ^ 15 minute intervals, all hours, all days, all months, all days of the week
