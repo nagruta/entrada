@@ -1,5 +1,5 @@
 ---
-entrada_android_sdk_download_url: http://dl.google.com/android
+entrada_android_sdk_download_url: https://dl.google.com/android
 entrada_android_sdk_download_file: android-sdk_r24.4.1-linux.tgz
 entrada_android_sdk_parent_dir: /opt
 entrada_android_sdk_path: '{{ entrada_android_sdk_parent_dir }}/android-sdk-linux'
@@ -8,4 +8,6 @@ entrada_android_sdk_parts:
   - platform-tools
 
 entrada_android_sdk_platforms:
+  - android-28
   - android-29
+  - android-R
