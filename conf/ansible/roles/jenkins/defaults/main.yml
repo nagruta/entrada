@@ -17,6 +17,7 @@ entrada_jenkins_plugins: # 21 alphabetical, plus extras not in lists above
   - dashboard-view
   - email-ext
   - git
+  - git-client
   - github-branch-source
   - gradle
   - job-dsl
