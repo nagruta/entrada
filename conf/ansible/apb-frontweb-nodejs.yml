@@ -1,5 +1,5 @@
 ---
-- hosts: group_purpose_frontweb
+- hosts: group_purpose_frontweb_nodejs
   gather_facts: no
   roles:
     - git

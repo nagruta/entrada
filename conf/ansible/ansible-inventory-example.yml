@@ -35,10 +35,10 @@ all:
           vars:
           hosts:
             host_example_01:
-    group_purpose_frontweb:
+    group_purpose_frontweb_nodejs:
       children:
         # !!! isolate group down one level down to prevent var overrides
-        group_purpose_frontweb_vars:
+        group_purpose_frontweb_nodejs_vars:
           vars:
           hosts:
             host_example_02:
