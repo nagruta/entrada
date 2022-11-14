@@ -6,6 +6,6 @@ then
 fi
 RESULT=$(`dirname $0`/adhoc $1 -m debug -a '"var='$2'"')
 #echo "RESULT >"$RESULT"<"
-[[ $RESULT =~ .*\"(.*)\".}$ ]]
+[[ $RESULT =~ \"$2\":\ \"(.*)\" ]]
 VAR=${BASH_REMATCH[1]}
 echo $VAR
