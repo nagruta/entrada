@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo port install py39-ansible
+sudo port select --set ansible py39-ansible
