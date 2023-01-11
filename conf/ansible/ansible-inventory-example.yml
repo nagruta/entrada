@@ -7,8 +7,12 @@ all:
       ansible_host: 192.168.9.2
     host_example_03:
       ansible_host: 192.168.9.3
-    host_example_03:
+    host_example_04:
       ansible_host: 192.168.9.4
+    host_example_05:
+      ansible_host: 192.168.9.5
+    host_example_06:
+      ansible_host: 192.168.9.6
   children:
     group_os_debian:
       children:
@@ -19,6 +23,15 @@ all:
           hosts:
             host_example_01:
             host_example_02:
+    group_os_macos:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_os_macos_vars:
+          vars:
+            ansible_user: macgod
+          hosts:
+            host_example_05:
+            host_example_06:
     group_os_ubuntu:
       children:
         # !!! isolate group down one level down to prevent var overrides
@@ -42,6 +55,14 @@ all:
           vars:
           hosts:
             host_example_02:
+    group_purpose_macprog:
+      children:
+        # !!! isolate group down one level down to prevent var overrides
+        group_purpose_macprog_vars:
+          vars:
+          hosts:
+            host_example_05:
+            host_example_06:
     group_purpose_scpfiles:
       children:
         # !!! isolate group down one level down to prevent var overrides

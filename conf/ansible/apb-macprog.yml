@@ -1,0 +1,6 @@
+---
+- hosts: group_purpose_macprog
+  gather_facts: no
+  roles:
+    - macprog
+...

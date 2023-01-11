@@ -1,0 +1,5 @@
+---
+- name: "establish Erlang via MacPorts"
+  block:
+    - shell: "port install erlang"
+  become: yes
