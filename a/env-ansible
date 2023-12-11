@@ -11,6 +11,7 @@ then # must copy to non-world-writable directory
   cp $FILE_SOURCE_ANSIBLE_CFG $PATH_TARGET_ANSIBLE_CFG
 fi
 cd $PATH_CONF_ANSIBLE
+echo "pwd == $(pwd)"
 PATH_SUPER_CONF_ANSIBLE=../../../../$PATH_CONF_ANSIBLE
 if [ ! -d $PATH_SUPER_CONF_ANSIBLE ]
 then

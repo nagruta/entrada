@@ -14,4 +14,4 @@ then
     done
     exit 1
 fi
-source ../../a/subplay $*
+source ../../a/subplay $* --check --diff
