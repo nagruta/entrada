@@ -1,2 +1,2 @@
 #!/bin/sh
-`dirname $0`/adhoc all --list-hosts
+$(dirname $0)/adhoc all --list-hosts

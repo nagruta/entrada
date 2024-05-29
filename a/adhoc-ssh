@@ -1,11 +1,11 @@
-#!/bin/bash
-if [ $# -lt 1 ]
-then
-    echo usage: "$0 <host pattern>"
-    exit 1
+#!/bin/sh
+if [ $# -lt 1 ]; then
+  echo usage: "$0 <host pattern>"
+  exit 1
 fi
-USER=$(`dirname $0`/adhoc-var $1 "ansible_user")
-HOST=$(`dirname $0`/adhoc-var $1 "ansible_host")
-PASSWORD=$(`dirname $0`/adhoc-var $1 "ansible_password")
+PATH_HERE=$(pwd)/$(dirname $0)
+USER=$($PATH_HERE/adhoc-var $1 "ansible_user")
+HOST=$($PATH_HERE/adhoc-var $1 "ansible_host")
+PASSWORD=$($PATH_HERE/adhoc-var $1 "ansible_password")
 echo "$USER@$HOST   password: "$PASSWORD
 ssh $USER@$HOST

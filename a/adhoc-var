@@ -1,13 +1,11 @@
-#!/bin/bash
-if [ $# -lt 1 ]
-then
-    echo usage: "$0 <host pattern> <variable name> [-v]"
-    exit 1
+#!/bin/sh
+if [ $# -lt 1 ]; then
+  echo usage: "$0 <host pattern> <variable name> [-v]"
+  exit 1
 fi
-RESULT=$(`dirname $0`/adhoc $1 -m debug -a '"var='$2'"')
-if [ "$3" == "-v" ]
-then
-    echo "RESULT >"$RESULT"<"
+RESULT=$($(dirname $0)/adhoc $1 -m debug -a '"var='$2'"')
+if [ "$3" == "-v" ]; then
+  echo "RESULT >"$RESULT"<"
 fi
 [[ $RESULT =~ \"$2\":\ \"([^\"]*)\" ]]
 VAR=${BASH_REMATCH[1]}
