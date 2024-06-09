@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH_TO_THIS=`dirname $0`
 cd $PATH_TO_THIS/..
-source a/env-ansible
+. a/cd-env-ansible
 if [ $# -lt 1 ]
 then
     echo ""
@@ -14,4 +14,4 @@ then
     done
     exit 1
 fi
-source ../../a/subplay $* --check --diff
+. ../../a/subplay $* --check --diff

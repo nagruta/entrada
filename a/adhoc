@@ -3,7 +3,7 @@ if [ $# -lt 1 ]; then
   echo usage: "$0 <ansible command>"
   exit 1
 fi
-source $(dirname $0)/env-ansible
+. $(dirname $0)/cd-env-ansible
 #echo "ARGS >"$@"<"
 #COMMAND="ansible -i "$FILE_INVENTORY" "$ARG_VAULT_PASSWORD_FILE" "$ARG_EXTRA_VARS" -vv "$@""
 #echo "COMMMAND >"$COMMAND"<"
