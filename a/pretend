@@ -1,17 +1,2 @@
-#!/bin/bash
-PATH_TO_THIS=`dirname $0`
-cd $PATH_TO_THIS/..
-. a/cd-env-ansible
-if [ $# -lt 1 ]
-then
-    echo ""
-    echo usage: "$0 <playbook name between apb-???.yml> [args]"
-    echo ".....available playbook names:"
-    for FILE in `ls apb-*.yml`
-    do
-      [[ $FILE =~ apb-(.*).yml$ ]]
-      echo ${BASH_REMATCH[1]}
-    done
-    exit 1
-fi
-. ../../a/subplay $* --check --diff
+#!/bin/sh
+. $(dirname $0)/cd-env-ansible-bqn
