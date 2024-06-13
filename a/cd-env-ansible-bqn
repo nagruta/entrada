@@ -1,0 +1,6 @@
+#!/bin/sh
+. $(dirname $0)/"cd-env-ansible"
+if [ "$CALLER" != "cd-env-ansible-bqn" ]; then
+  echo ">>> calling $CALLER.bqn >>>"
+  bqn ../../a/$CALLER.bqn $@
+fi
