@@ -1,0 +1,22 @@
+---
+- name: "esablish Erlang/OTP"
+  block:
+  - name: "clone/checkout repo"
+    git:
+      #key_file: "{{ entrada_erlotp_git_key_file }}"
+      repo: "https://{{ entrada_erlotp_git_domain }}//{{ entrada_erlotp_git_repo }}"
+      dest: "{{ entrada_user_home_work_dir }}"
+      version: "{{ entrada_erlotp_git_branch }}"
+      force: yes
+  - name: "configure"
+    command: ./configure --without-javac --without-termcap
+    args:
+      chdir: "{{ entrada_user_home_work_dir }}"
+      creates: "{{ entrada_user_home_work_dir }}/Makefile"
+  - name: "make"
+    command: make
+    args:
+      chdir: "{{ entrada_user_home_work_dir }}"
+      creates: "{{ entrada_user_home_work_target }}"
+  become: yes
+  become_user: "{{ entrada_user_name }}"

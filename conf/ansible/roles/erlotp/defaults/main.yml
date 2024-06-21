@@ -1,0 +1,11 @@
+---
+entrada_erlotp_git_branch: OTP-26.1.1
+entrada_erlotp_git_domain: github.com
+#entrada_erlotp_git_user: override-this-user!!!
+#entrada_erlotp_git_password: override-this-password!!!
+entrada_erlotp_git_repo: aboalang/otp
+entrada_erlotp_git_work_dir: erlang/otp
+entrada_user_home_top_dir: "/home/{{ entrada_user_name }}/{{ entrada_user_top_dir }}"
+entrada_user_home_work_dir: "{{ entrada_user_home_top_dir }}/{{ entrada_erlotp_git_work_dir }}"
+entrada_user_home_work_dir_bin: "{{ entrada_user_home_work_dir }}/bin"
+entrada_user_home_work_target: "{{ entrada_user_home_work_dir_bin }}/erl"
