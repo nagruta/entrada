@@ -2,4 +2,9 @@
 entrada_user_name: nagruta
 entrada_user_password: override-this-password!!!
 entrada_user_uid: 12301
-entrada_user_top_dir: w
+entrada_user_dir_home: "/home/{{ entrada_user_name }}"
+entrada_user_dir_z: "{{ entrada_user_dir_home }}/z"
+entrada_user_dir_v: "{{ entrada_user_dir_z }}/v"
+entrada_user_dir_d: "{{ entrada_user_dir_v }}/d"
+entrada_user_dir_e: "{{ entrada_user_dir_v }}/e"
+entrada_user_dir_elo: "{{ entrada_user_dir_e }}/_elo"

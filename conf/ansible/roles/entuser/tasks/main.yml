@@ -1,8 +1,20 @@
 ---
-- name: user "{{ entrada_user_name }}"
+- name: "user {{ entrada_user_name }}"
   user:
     name: "{{ entrada_user_name }}"
     password: "{{ entrada_user_password }}"
+    shell: /bin/dash
     uid: "{{ entrada_user_uid }}"
-    shell: /bin/bash
   become: yes
+
+- name: "user {{ entrada_user_name }} profile PATH to elo"
+  block:
+  - file:
+      path: "{{ entrada_user_dir_elo }}"
+      state: directory
+  - lineinfile:
+      create: yes
+      line: 'PATH={{ entrada_user_dir_elo }}:$PATH'
+      path: "{{ entrada_user_dir_home }}/.profile"
+  become: yes
+  become_user: "{{ entrada_user_name }}"
