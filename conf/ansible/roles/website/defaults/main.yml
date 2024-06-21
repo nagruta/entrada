@@ -4,13 +4,9 @@ entrada_webs_git_domain: gitlab.com
 #entrada_webs_git_user: override-this-user!!!
 #entrada_webs_git_password: override-this-password!!!
 entrada_webs_git_repo: nagruta/entrada.git
-entrada_webs_git_work_dir: nagruta/repo/entrada
-#entrada_webs_run_dir: default-is-undefined
-#entrada_webs_run_app: default-is-undefined
-#entrada_webs_run_args: default-is-undefined
-entrada_webs_run_type: nodejs
+entrada_webs_path_work: es/nagruta/entrada
+entrada_webs_run_type: erlang
 #entrada_webs_service_name: default-is-undefined
 #entrada_webs_service_command: default-is-undefined
-entrada_user_home_top_dir: "/home/{{ entrada_user_name }}/{{ entrada_user_top_dir }}"
-entrada_user_home_work_dir: "{{ entrada_user_home_top_dir }}/{{ entrada_webs_git_work_dir }}"
-entrada_user_home_webs_run_dir: "{{ entrada_user_home_work_dir }}/{{ entrada_webs_run_dir }}"
+entrada_webs_dir_work: "{{ entrada_user_dir_d }}/{{ entrada_webs_path_work }}"
+entrada_webs_dir_run: "{{ entrada_webs_dir_work }}"

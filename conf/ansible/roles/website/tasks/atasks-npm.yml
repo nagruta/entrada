@@ -1,0 +1,6 @@
+---
+- name: "npm install package.json in {{ entrada_webs_dir_run }}"
+  npm: path={{ entrada_user_home_webs_run_dir }}
+  become: yes
+  become_user: "{{ entrada_user_name }}"
+  when: entrada_webs_run_type == "nodejs" and entrada_webs_dir_run is defined

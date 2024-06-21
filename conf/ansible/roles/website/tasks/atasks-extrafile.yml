@@ -2,7 +2,7 @@
 - name: "copy extra file A {{ entrada_webs_extra_file_name_a }}"
   vars:
     srcfile: "{{ scppath }}{{ entrada_webs_extra_file_name_a }}"
-    destparent: "{{ entrada_user_home_webs_run_dir }}/{{ entrada_webs_extra_file_path }}"
+    destparent: "{{ entrada_webs_dir_run }}/{{ entrada_webs_extra_file_path }}"
     target: "{{ destparent }}{{ entrada_webs_extra_file_name_a }}"
     replacetarget: no
   include_role:
@@ -10,11 +10,11 @@
      tasks_from: atasks-establish-file.yml
   when: entrada_webs_extra_file_name_a is defined and
         entrada_webs_extra_file_path is defined and
-        entrada_user_home_webs_run_dir is defined
+        entrada_webs_dir_run is defined
 - name: "copy extra file B {{ entrada_webs_extra_file_name_b }}"
   vars:
     srcfile: "{{ scppath }}{{ entrada_webs_extra_file_name_b }}"
-    destparent: "{{ entrada_user_home_webs_run_dir }}/{{ entrada_webs_extra_file_path }}"
+    destparent: "{{ entrada_webs_dir_run }}/{{ entrada_webs_extra_file_path }}"
     target: "{{ destparent }}{{ entrada_webs_extra_file_name_b }}"
     replacetarget: no
   include_role:
@@ -22,4 +22,4 @@
      tasks_from: atasks-establish-file.yml
   when: entrada_webs_extra_file_name_b is defined and
         entrada_webs_extra_file_path is defined and
-        entrada_user_home_webs_run_dir is defined
+        entrada_webs_dir_run is defined
