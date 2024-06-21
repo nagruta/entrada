@@ -1,0 +1,10 @@
+---
+- hosts: group_purpose_frontweb_erlang
+  gather_facts: no
+  roles:
+    - entuser
+    - git
+    - erlotp
+    - certbot
+    - website
+...
