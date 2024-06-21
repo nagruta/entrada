@@ -3,8 +3,8 @@ entrada_webs_git_branch: master
 entrada_webs_git_domain: gitlab.com
 #entrada_webs_git_user: override-this-user!!!
 #entrada_webs_git_password: override-this-password!!!
-entrada_webs_git_repo: naluar/entrada.git
-entrada_webs_git_work_dir: naluar/repo/entrada
+entrada_webs_git_repo: nagruta/entrada.git
+entrada_webs_git_work_dir: nagruta/repo/entrada
 #entrada_webs_run_dir: default-is-undefined
 #entrada_webs_run_app: default-is-undefined
 #entrada_webs_run_args: default-is-undefined
