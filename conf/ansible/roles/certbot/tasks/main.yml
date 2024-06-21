@@ -16,3 +16,4 @@
 - name: "acquire or renew certificate using certbot"
   command: certbot certonly -n --standalone --keep --agree-tos -d {{ entrada_webs_cert_domain }} --email {{ entrada_webs_cert_email_name }}@{{ entrada_webs_cert_domain }}
   become: yes
+  when: entrada_webs_cert_enable
