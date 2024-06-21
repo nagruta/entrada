@@ -50,11 +50,13 @@ all:
             host_example_01:
     group_purpose_frontweb:
       children:
-        # !!! isolate group down one level down to prevent var overrides
-        group_purpose_frontweb_vars:
-          vars:
-          hosts:
-            host_example_02:
+        group_purpose_frontweb_nodejs:
+          children:
+            # !!! isolate group down one level down to prevent var overrides
+            group_purpose_frontweb_nodejs_vars:
+              vars:
+              hosts:
+                host_example_02:
     group_purpose_macprog:
       children:
         # !!! isolate group down one level down to prevent var overrides
