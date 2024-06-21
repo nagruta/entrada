@@ -1,22 +1,45 @@
 ---
-- name: "esablish Erlang/OTP"
+- name: establish Erlang/OTP
   block:
-  - name: "clone/checkout repo"
+  - name: clone/checkout repo
     git:
       #key_file: "{{ entrada_erlotp_git_key_file }}"
       repo: "https://{{ entrada_erlotp_git_domain }}//{{ entrada_erlotp_git_repo }}"
-      dest: "{{ entrada_user_home_work_dir }}"
+      dest: "{{ entrada_erlotp_dir_work }}"
       version: "{{ entrada_erlotp_git_branch }}"
       force: yes
-  - name: "configure"
+  - name: configure
     command: ./configure --without-javac --without-termcap
     args:
-      chdir: "{{ entrada_user_home_work_dir }}"
-      creates: "{{ entrada_user_home_work_dir }}/Makefile"
-  - name: "make"
+      chdir: "{{ entrada_erlotp_dir_work }}"
+      creates: "{{ entrada_erlotp_dir_work }}/Makefile"
+  - name: make
     command: make
     args:
-      chdir: "{{ entrada_user_home_work_dir }}"
-      creates: "{{ entrada_user_home_work_target }}"
+      chdir: "{{ entrada_erlotp_dir_work }}"
+      creates: "{{ entrada_erlotp_dir_bin }}/erl"
+  - name: triplet subdir
+    shell: "cd {{ entrada_erlotp_dir_bin }}; ls -d */"
+    register: regtriplet
+  - name: elo to epmd
+    file:
+      src: "{{ entrada_erlotp_dir_bin }}/{{ regtriplet.stdout }}epmd"
+      dest: "{{ entrada_user_dir_elo }}/epmd"
+      state: link
+  - name: elo to erl
+    file:
+      src: "{{ entrada_erlotp_dir_bin }}/erl"
+      dest: "{{ entrada_user_dir_elo }}/erl"
+      state: link
+  - name: elo to erlc
+    file:
+      src: "{{ entrada_erlotp_dir_bin }}/erlc"
+      dest: "{{ entrada_user_dir_elo }}/erlc"
+      state: link
+  - name: elo to escript
+    file:
+      src: "{{ entrada_erlotp_dir_bin }}/escript"
+      dest: "{{ entrada_user_dir_elo }}/escript"
+      state: link
   become: yes
   become_user: "{{ entrada_user_name }}"
