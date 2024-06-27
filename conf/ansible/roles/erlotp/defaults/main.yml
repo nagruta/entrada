@@ -1,5 +1,5 @@
 ---
-entrada_erlotp_git_branch: OTP-26.1.1
+entrada_erlotp_git_branch: OTP-27.0
 entrada_erlotp_git_domain: github.com
 #entrada_erlotp_git_user: override-this-user!!!
 #entrada_erlotp_git_password: override-this-password!!!
