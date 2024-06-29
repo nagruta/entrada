@@ -9,4 +9,4 @@ entrada_webs_run_type: erlang
 #entrada_webs_service_name: default-is-undefined
 #entrada_webs_service_command: default-is-undefined
 entrada_webs_dir_work: "{{ entrada_user_dir_d }}/{{ entrada_webs_path_work }}"
-entrada_webs_dir_run: "{{ entrada_webs_dir_work }}"
+entrada_webs_dir_run: "{{ entrada_webs_dir_work }}/{{ entrada_webs_path_run }}"
