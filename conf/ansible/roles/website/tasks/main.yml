@@ -16,7 +16,7 @@
         dest: "{{ entrada_user_home_webs_run_dir }}/cert/privkey.pem"
         mode: 0600
   become: yes
-  when: entrada_webs_run_dir is defined
+  when: entrada_webs_run_dir is defined and entrada_webs_cert_enable is defined and entrada_webs_cert_enable
 
 - name: "reset top directory owner, recursively"
   file:
@@ -26,10 +26,7 @@
     recurse: yes
   become: yes
 
-- name: "npm install package.json in {{ entrada_user_home_webs_run_dir }}"
-  npm: path={{ entrada_user_home_webs_run_dir }}
-  become: yes
-  become_user: "{{ entrada_user_name }}"
+- include_tasks: atasks-npm.yml
   when: entrada_webs_run_type == "nodejs" and entrada_webs_run_dir is defined
 
 - name: "establish system service"
