@@ -7,13 +7,16 @@
     uid: "{{ entrada_user_uid }}"
   become: yes
 
-- name: "user {{ entrada_user_name }} profile PATH to elo"
+- name: "user {{ entrada_user_name }} .bashrc PATH to elo"
   block:
   - file:
       path: "{{ entrada_user_dir_elo }}"
       state: directory
   - lineinfile:
-      create: yes
+      line: 'PATH={{ entrada_user_dir_elo }}:$PATH'
+      path: "{{ entrada_user_dir_home }}/.bashrc"
+  - lineinfile:
+      state: absent
       line: 'PATH={{ entrada_user_dir_elo }}:$PATH'
       path: "{{ entrada_user_dir_home }}/.profile"
   become: yes
