@@ -9,4 +9,8 @@ if [ "$3" == "-v" ]; then
 fi
 [[ $RESULT =~ \"$2\":\ \"([^\"]*)\" ]]
 VAR=${BASH_REMATCH[1]}
+if [ "$VAR" == "" ]; then # numbers aren't quoted
+  [[ $RESULT =~ \"$2\":\ ([^\ }]*) ]]
+  VAR=${BASH_REMATCH[1]}
+fi
 echo $VAR
