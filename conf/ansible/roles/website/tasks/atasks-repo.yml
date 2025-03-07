@@ -1,0 +1,18 @@
+---
+- set_fact:
+    entrada_task_repo_git_url_prefix: ""
+
+- name: "prefix git URL with user:password"
+  set_fact:
+    entrada_task_repo_git_url_prefix: "{{ entrada_task_repo.git_user }}:{{ entrada_task_repo.git_password|urlencode() }}@"
+  when: entrada_task_repo.git_user is defined and entrada_task_repo.git_password is defined
+
+- name: clone/checkout repo
+  git:
+    #key_file: "{{ entrada_task_repo.git_key_file }}"
+    repo: "https://{{ entrada_task_repo_git_url_prefix }}{{ entrada_task_repo.git_domain }}//{{ entrada_task_repo.git_repo }}"
+    dest: "{{ entrada_webs_dir_top }}/{{ entrada_task_repo.git_path }}"
+    version: "{{ entrada_task_repo.git_branch }}"
+    force: yes
+  become: yes
+  become_user: "{{ entrada_user_name }}"
