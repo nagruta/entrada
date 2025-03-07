@@ -1,26 +1,30 @@
 ---
-- include_tasks: atasks-webgit.yml
+- name: clone/checkout web server repo
+  include_tasks: atasks-repo.yml
+  vars:
+    entrada_task_repo: "{{ entrada_webs_git_repo }}"
+
 - include_tasks: atasks-extrafile.yml
 
-- name: "copy letsencrypt certificates to {{ entrada_webs_dir_run }}"
+- name: "copy letsencrypt certificates to {{ entrada_webs_dir_cert }}"
   block:
     - copy:
         src: "/etc/letsencrypt/live/{{ entrada_webs_cert_domain }}/fullchain.pem"
-        dest: "{{ entrada_webs_dir_run }}/cert/"
+        dest: "{{ entrada_webs_dir_cert }}/"
         remote_src: yes
     - copy:
         src: "/etc/letsencrypt/live/{{ entrada_webs_cert_domain }}/privkey.pem"
-        dest: "{{ entrada_webs_dir_run }}/cert/"
+        dest: "{{ entrada_webs_dir_cert }}/"
         remote_src: yes
     - file:
-        dest: "{{ entrada_webs_dir_run }}/cert/privkey.pem"
+        dest: "{{ entrada_webs_dir_cert }}/privkey.pem"
         mode: 0600
   become: yes
   when: entrada_webs_dir_run is defined and entrada_webs_cert_enable is defined and entrada_webs_cert_enable
 
-- name: "reset run directory owner, recursively"
+- name: "reset work directory owner, recursively"
   file:
-    dest: "{{ entrada_webs_dir_run }}"
+    dest: "{{ entrada_webs_dir_work }}"
     owner: "{{ entrada_user_name }}"
     group: "{{ entrada_user_name }}"
     recurse: yes
@@ -29,7 +33,24 @@
 - include_tasks: atasks-npm.yml
   when: entrada_webs_run_type == "nodejs" and entrada_webs_dir_run is defined
 
-- name: "establish system service"
+- name: DEBUG sites
+  ansible.builtin.debug:
+    msg: item is {{ item }}
+  loop: "{{ entrada_webs_sites }}"
+
+- name: clone/checkout website repo
+  include_tasks: atasks-repo.yml
+  vars:
+    entrada_task_repo: "{{ item }}"
+  loop: "{{ entrada_webs_sites }}"
+
+- name: allow ports > 79 for all users (default is < 1024 for root only)
+  lineinfile:
+    line: 'net.ipv4.ip_unprivileged_port_start=80'
+    path: "/etc/sysctl.conf"
+  become: yes
+
+- name: establish system service
   vars:
     entrada_service_name: "{{ entrada_webs_service_name }}"
     entrada_service_user: "{{ entrada_user_name }}"
