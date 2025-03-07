@@ -1,10 +1,15 @@
 ---
 - name: "user {{ entrada_user_name }}"
-  user:
-    name: "{{ entrada_user_name }}"
-    password: "{{ entrada_user_password }}"
-    shell: /bin/dash
-    uid: "{{ entrada_user_uid }}"
+  block:
+  - group:
+      name: "{{ entrada_user_name }}"
+      gid: "{{ entrada_user_uid }}"
+  - user:
+      name: "{{ entrada_user_name }}"
+      group: "{{ entrada_user_uid }}"
+      password: "{{ entrada_user_password }}"
+      shell: /bin/bash
+      uid: "{{ entrada_user_uid }}"
   become: yes
 
 - name: "user {{ entrada_user_name }} .bashrc PATH to elo"
